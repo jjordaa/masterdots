@@ -3,19 +3,30 @@
 * 
 */
 
-//Capturar el valor del input nick
-const nickInput=document.getElementById('nick');
-console.log(nickInput.value);
-nickInput.value="Jorge";
-const emailInput=document.getElementById('email');
-//Capturar el valor del select
-const tamanotInput=document.getElementById('tamano');
-console.log(tamanotInput.value);
-console.log(tamanotInput.options[tamanotInput.selectedIndex].text);
-for (const option of tamanotInput.options) {
-    if (option.text==="5x5") {
-        console.log(option.value);
-    }else{
-        console.log("Que te den")
+//Inizializacion de var, objetos, DOM
+const nickInput=document.getElementById("nick");
+const tamanoInput=document.getElementById("tamano");
+const formEntrada=document.getElementById("formEntrada");
+const error=document.getElementById("error");
+
+//Funciones de evento
+function comprobarForm(event) {
+    //Comprobar cambios
+    if (nickInput.value.length==0) {
+        console.log("No hay nick");
+        nickInput.focus();
+        event.preventDefault();
+        error.innerText="El campo de nick no puede estar vacío";
+        return false;
+    }else if (tamanoInput.value=="0") {
+        console.log("No se ha seleccionado tamaño de panel");
+        tamanoInput.focus();
+        event.preventDefault();
+        error.innerText="Debe seleecionar un tamaño de panel";
+        return false;        
     }
+    return true;
 }
+
+//Inicio carga de eventos
+formEntrada.addEventListener('submit',comprobarForm);
