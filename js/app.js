@@ -9,6 +9,12 @@ const tamanoInput=document.getElementById("tamano");    //Obtenemos el input del
 const formEntrada=document.getElementById("formEntrada");   //Obtenemos el formulario de entrada
 const error=document.getElementById("error");   //Obtenemos el div de error
 
+//Comprobar si hay algún error de juego
+if (sessionStorage.getItem('error')!=null) {  //Si hay un error
+    error.innerText=sessionStorage.getItem('error');    //Mostramos
+    sessionStorage.removeItem('error'); 
+}
+
 //Funciones de evento
 function comprobarForm(event) { //Función para comprobar los datos del formulario de entrada
     //Comprobar cambios
