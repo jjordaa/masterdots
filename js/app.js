@@ -1,39 +1,41 @@
 /*
-/* JS Para la comprobación de datos del formulario de entrada
-* 
+* JS Para la comprobación de datos del Formulario de entrada
+*
 */
 
-//Inizializacion de var, objetos, DOM
-const nickInput=document.getElementById("nick");    //Obtenemos el input del nick
-const tamanoInput=document.getElementById("tamano");    //Obtenemos el input del tamaño del panel
-const formEntrada=document.getElementById("formEntrada");   //Obtenemos el formulario de entrada
-const error=document.getElementById("error");   //Obtenemos el div de error
+//Inicializacion de var,objetos, DOM
+const nickInput=document.getElementById("nick");
+const tamanoInput=document.getElementById("tamano");
+const formEntrada=document.getElementById("formEntrada");
+const error=document.getElementById("error");
 
-//Comprobar si hay algún error de juego
-if (sessionStorage.getItem('error')!=null) {  //Si hay un error
-    error.innerText=sessionStorage.getItem('error');    //Mostramos
-    sessionStorage.removeItem('error'); 
+//Comprobar si hay algún error de juego.html
+if(sessionStorage.getItem('error')!=null)
+{
+    error.innerText=sessionStorage.getItem('error');
+    sessionStorage.removeItem('error');
 }
 
 //Funciones de evento
-function comprobarForm(event) { //Función para comprobar los datos del formulario de entrada
+function comprobarForm(event){
     //Comprobar cambios
-    if (nickInput.value.match(/(?<!\S)[0-9]/)) { //Comprobamos si el nick comienza por un número
+    if(nickInput.value.match(/(?<!\S)[0-9]/))
+    {
         nickInput.focus();
         event.preventDefault();
-        error.innerText="El campo de nick no puede comenzar por un número";
+        error.innerText="El campo de nick no puede comenzar con un numero";
         return false;
-    }else if (tamanoInput.value=="0") {
-        console.log("No se ha seleccionado tamaño de panel");
+    }else if(tamanoInput.value=="0"){
         tamanoInput.focus();
         event.preventDefault();
-        error.innerText="Debe seleecionar un tamaño de panel";
-        return false;        
+        error.innerText="Se debe seleccionar un tamaño de panel";
+        return false;
     }
-    //Comprobación correcta
-    datosUsuario(nickInput); //Guardamos el nick en el sessionStorage
+    //Informacion es correcta
+    datosUsuario(nickInput);
+    historicoUsuarios(nickInput);
     return true;
 }
 
-//Inicio carga de eventos
-formEntrada.addEventListener('submit',comprobarForm); //Evento para comprobar los datos del formulario de entrada
+//Inicio de carga de eventos
+formEntrada.addEventListener('submit',comprobarForm);
