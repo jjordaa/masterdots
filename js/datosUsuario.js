@@ -16,7 +16,6 @@ function getDatosUsuario(){                 //Función para obtener el nick del 
 }
 //Funcion para comprobar de los datos de usuario no está vacio antes de ir a jugar 
 function comprobacionDatosUsuario(){
-    nick = getDatosUsuario();
     if (nick==null) {
         sessionStorage.setItem('error','No se ha rellenado correctamente el formulario');
         return false;        
