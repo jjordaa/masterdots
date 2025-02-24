@@ -3,15 +3,21 @@
 *
 */
 var nick;
+var tamano = "";
+var email = "";
+var geolocalizacionTxt;
 
 //sessionStorage
 function datosUsuario(nick){
-
     sessionStorage.setItem('nick',nick.value);
+    sessionStorage.setItem('tamano',tamano.value);
+    sessionStorage.setItem('email',email.value);
 }
 
 function getDatosUsuario(){
     nick = sessionStorage.getItem('nick');
+    tamano = sessionStorage.getItem('tamano');
+    email = sessionStorage.getItem('email');
     console.log(nick);
 }
 function comprobacionDatosUsuario(){
@@ -20,6 +26,23 @@ function comprobacionDatosUsuario(){
         return false;
     }
     return true;
+}
+//Funcion de localozacion
+function datoGeolocalizacion(){
+    if (!navigator.geolocation){
+        geolocalizacionTxt = 'Geolocalización no soportada por el navegador';
+    }else{
+        navigator.geolocation.getCurrentPosition(
+            //Éxito
+            (position)=>{
+                geolocalizacionTxt = 'Latitud: '+position.coords.latitude+'<br>Longitud: '+position.coords.longitude;
+            }
+            //Error
+            ()=>{
+                geolocalizacionTxt = 'No se ha podido obtener la geolocalización';
+        });
+    }
+    return geolocalizacionTxt;
 }
 
 //localStorage
