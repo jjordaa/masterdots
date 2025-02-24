@@ -32,10 +32,12 @@ function comprobarForm(event){
         return false;
     }
     //Informacion es correcta
-    datosUsuario(nickInput);
+    datosUsuario(nickInput,tamanoInput,emailInput);
     historicoUsuarios(nickInput);
     return true;
 }
 
 //Inicio de carga de eventos
 formEntrada.addEventListener('submit',comprobarForm);
+//Geolocation
+datoGeolocalizacion();

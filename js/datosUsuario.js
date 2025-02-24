@@ -8,10 +8,11 @@ var email = "";
 var geolocalizacionTxt;
 
 //sessionStorage
-function datosUsuario(nick){
+function datosUsuario(nick,tamano,email){
     sessionStorage.setItem('nick',nick.value);
     sessionStorage.setItem('tamano',tamano.value);
     sessionStorage.setItem('email',email.value);
+    sessionStorage.setItem('geolocalizacionTxt',geolocalizacionTxt);
 }
 
 function getDatosUsuario(){
@@ -34,15 +35,11 @@ function datoGeolocalizacion(){
     }else{
         navigator.geolocation.getCurrentPosition(
             //Éxito
-            (position)=>{
-                geolocalizacionTxt = 'Latitud: '+position.coords.latitude+'<br>Longitud: '+position.coords.longitude;
-            }
+            (position)=>{geolocalizacionTxt = 'Latitud: '+position.coords.latitude+'<br>Longitud: '+position.coords.longitude+''},
             //Error
-            ()=>{
-                geolocalizacionTxt = 'No se ha podido obtener la geolocalización';
-        });
+            ()=>{geolocalizacionTxt = "No se ha podido obtener la geolocalización";}
+        )
     }
-    return geolocalizacionTxt;
 }
 
 //localStorage
